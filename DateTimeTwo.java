@@ -1,5 +1,5 @@
 
-public class DateTimeTwo {
+public class DateTimeTwo extends DateTimeOne{
 
 	public void daysOfCurrentMonth() {
 		// TODO Auto-generated method stub

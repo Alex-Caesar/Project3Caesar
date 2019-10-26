@@ -8,11 +8,15 @@ public class sandPR3 {
 	DateTimeOneTest.getValueOfSecond();
 	
 	//DateTimeOneTest.sleepForFiveSec();
-	//DateTimeOneTest.getValueOfSecond();
+	DateTimeOneTest.getValueOfSecond();
 		
 	DateTimeOneTest.dateTimeNow();
 	
+	DateTimeOneTest.dateTimeOfOtherCity();
+	
 	DateTimeOneTest.dateTimeDifferentZone();
+	
+	DateTimeOneTest.timeZoneHashMap();
 	
 	
 	}
