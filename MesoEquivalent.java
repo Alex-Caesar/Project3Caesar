@@ -1,12 +1,18 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MesoEquivalent {
 
 	private ArrayList<MesoStation> stationsAVG;
 	private ArrayList<MesoStation> statsForToString;
+	
+	HashMap<String, Integer> asciiEquals;
+	
+	Integer asciiAverage;
+	
 	String LetterstID;
 	char c;
 	char[] charArray;
@@ -18,8 +24,10 @@ public class MesoEquivalent {
 
 	public MesoEquivalent(String stID) throws IOException {
 		this.stationsAVG = new ArrayList<MesoStation>(10);
+		this.asciiEquals=new HashMap<String, Integer>();
+		
 		try {
-			this.readIn("SortingDates.txt");
+			this.readIn("Mesonet.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,9 +37,8 @@ public class MesoEquivalent {
 		this.charArray = new char[length];
 		this.asciiVals = new int[length];
 		this.asciiAV = new int[length];
-		this.createCharArray();
-		this.createAsciiArray();
-		this.getletterAvg();
+		this.createArray(LetterstID);
+		this.asciiAverage=this.getletterAvg();
 
 	}
 	
@@ -53,15 +60,16 @@ public class MesoEquivalent {
 		tempRead = mesonetRead.readLine();
 		tempRead = mesonetRead.readLine();
 		tempRead = mesonetRead.readLine();
-
+		tempRead = mesonetRead.readLine();
+		
 		// while loop for reading in and making players
 		int i = 0;
 		while (tempRead != null) {
 			/*
 			 * if(i>=stations.length) { stations=expandArray(stations); }
 			 */
-
-			tempRead = tempRead.substring(1, 5);
+			tempRead=tempRead.trim();
+			tempRead = tempRead.substring(0, 4);
 			MesoStation MesoTemp = new MesoStation(tempRead);
 			stationsAVG.add(i, MesoTemp);
 			i++;
@@ -70,4 +78,79 @@ public class MesoEquivalent {
 
 		}
 	}
+	
+	public Integer getletterAvg() {
+		// vals to find
+		double charAverage = 0;
+		int asciiCeil = 0;
+		int asciiFloor = 0;
+		int asciiAvNum = 0;
+		// loop for adding ascii
+		for (int i = 0; i < length; i++) {
+			charAverage += asciiVals[i];
+		}
+		// average computation
+		charAverage /= 4;
+		// Math function for vals
+		asciiCeil = (int) Math.ceil(charAverage);
+		asciiFloor = (int) Math.floor(charAverage);
+		// determining average
+		if (charAverage % 100 >= 0.5) {
+			asciiAvNum = asciiCeil;
+		} else {
+			asciiAvNum = asciiFloor;
+		}
+		// finding average char
+		char lastChar = ((char) asciiAvNum);
+		// giving asciiAv data
+		asciiAV[0] = asciiCeil;
+		asciiAV[1] = asciiFloor;
+		asciiAV[2] = lastChar;
+
+		this.letterAvg = asciiAvNum;
+		this.asciiAvChar = lastChar;
+		
+		return (Integer) letterAvg;
+	}
+	
+	public int numberOfStationWithLetterAvg() throws IOException {
+		
+		this.statsForToString = new ArrayList<MesoStation>(2);
+		
+		int amount = 0;
+		int size4loop = stationsAVG.size();
+
+		for (int i = 0; i < size4loop; i++) {
+			String temp = (stationsAVG.get(i)).getStID();
+			char temper = temp.charAt(0);
+
+			int threshhold = Character.compare(c, temper);
+
+			if (threshhold == 0) {
+				
+				++amount;
+				
+				MesoStation addIn=stationsAVG.get(i);
+				this.statsForToString.add(addIn);
+				
+			}
+		}
+
+		return amount;
+	}
+	
+	
+
+	public void createArray(String LetterstID) {
+		charArray[0] = LetterstID.charAt(0);
+		charArray[1] = LetterstID.charAt(1);
+		charArray[2] = LetterstID.charAt(2);
+		charArray[3] = LetterstID.charAt(3);
+		
+		asciiVals[0] = (int) charArray[0];
+		asciiVals[1] = (int) charArray[1];
+		asciiVals[2] = (int) charArray[2];
+		asciiVals[3] = (int) charArray[3];
+	}
+
 }
