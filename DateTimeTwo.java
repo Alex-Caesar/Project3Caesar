@@ -1,29 +1,144 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.time.format.DateTimeFormatter;
 
-public class DateTimeTwo extends DateTimeOne{
+public class DateTimeTwo extends DateTimeOne {
 
-	public void daysOfCurrentMonth() {
-		// TODO Auto-generated method stub
-		
+	private HashMap<LocalDate, Integer> dates;
+
+	public DateTimeTwo() throws IOException {
+		super();
+		this.dates = new HashMap<LocalDate, Integer>();
+		this.readIn("Dates.txt");
 	}
 
-	public void daysOfAnyMonth(int i, int j) {
-		// TODO Auto-generated method stub
-		
+	public void daysOfCurrentMonth() {
+		LocalDateTime docmFinder = super.getNow();
+
+		int monthTen = docmFinder.getMonth().getValue();
+		int yearTen = docmFinder.getYear();
+		LocalDate ten = LocalDate.of(yearTen, monthTen, 10);
+		String tenthDay = ten.getDayOfWeek().toString();
+
+		LocalDate eighteen = LocalDate.of(yearTen, monthTen, 18);
+		String eighteenthtDay = eighteen.getDayOfWeek().toString();
+
+		System.out.println("The tenth day of this month is " + tenthDay + " and eighteenth is " + eighteenthtDay);
+
+	}
+
+	public void daysOfAnyMonth(int monthNum, int yearNum) {
+
+		int month = monthNum;
+		int year = yearNum;
+		LocalDate temp = LocalDate.of(year, month, 10);
+		String tenthDay = temp.getDayOfWeek().toString();
+
+		temp = LocalDate.of(year, month, 18);
+		String eighteenthtDay = temp.getDayOfWeek().toString();
+
+		System.out.println("The tenth day of this month is " + tenthDay + " and eighteenth is " + eighteenthtDay);
+
+	}
+
+	public void readIn(String filename) throws IOException {
+		// creating BufferReader
+		BufferedReader datesRead = new BufferedReader(new FileReader(filename));
+
+		// date formating
+		DateTimeFormatter readInFormat = DateTimeFormatter.ofPattern("MM.dd.yyyy");
+		// read in to get rid of first five line
+		String tempRead = datesRead.readLine();
+
+		// while loop for reading in and making players
+		Integer i = 0;
+		while (tempRead != null) {
+			LocalDate tempLD = LocalDate.parse(tempRead, readInFormat);
+			dates.put(tempLD, i);
+
+			i++;
+			tempRead = datesRead.readLine();
+		}
+		datesRead.close();
 	}
 
 	public void compareYear() {
-		// TODO Auto-generated method stub
-		
+
+		int yearToCheck = super.getNow().getYear();
+		int monthToCheck = super.getNow().getMonthValue();
+		int dayToCheck = super.getNow().getDayOfMonth();
+
+		int years = 0;
+		int months = 0;
+		int days = 0;
+
+		String maybeNot = "";
+
+		for (Map.Entry<LocalDate, Integer> check : dates.entrySet()) {
+			// checking for leapYear
+			if (check.getKey().isLeapYear() == false) {
+				maybeNot = "not";
+			}
+			// getting vals
+			years = check.getKey().getYear();
+			months = check.getKey().getMonthValue();
+			days = check.getKey().getDayOfMonth();
+
+			// getting diff
+			// yearToCheck-=years;
+			// monthToCheck-=months;
+			// dayToCheck-=days
+
+			Period p = Period.between(check.getKey(), super.getNow().toLocalDate());
+
+			String out = String.format("%d  is %s a leap year, and Difference: %d years, %d months, and %d days.",
+					years, maybeNot, p.getYears(), p.getMonths(), p.getDays());
+
+			System.out.println(out);
+
+			maybeNot = "";
+		}
+
 	}
 
 	public void dateHashMap() {
-		// TODO Auto-generated method stub
-		
+
+		// printing loop
+		for (Map.Entry<LocalDate, Integer> printer : dates.entrySet()) {
+
+			System.out.println(printer.getKey().toString() + ":" + printer.getValue());
+
+		}
+
 	}
 
 	public void dateHashMapSorted() {
-		// TODO Auto-generated method stub
+
+		ArrayList<LocalDate> sorter = new ArrayList<LocalDate>(dates.keySet());
 		
+		Collections.sort(sorter);
+		
+		//Collections.reverse(sorter);
+		
+		for (int i=0;i<sorter.size();i++) {
+
+			System.out.println(sorter.get(i).toString() + ":" + dates.get(sorter.get(i)));
+
+		}
+
 	}
 
 }

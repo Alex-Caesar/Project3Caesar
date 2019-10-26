@@ -225,4 +225,73 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		System.out.println(zstP5);
 	}
 
+	public LocalDate getDateNow() {
+		return dateNow;
+	}
+
+	public LocalTime getTimeNow() {
+		return timeNow;
+	}
+
+	public LocalDateTime getNow() {
+		return now;
+	}
+
+	public SimpleDateFormat getDateFormat() {
+		return dateFormat;
+	}
+
+	public HashMap<String, String> getDateTimeOne() {
+		return dateTimeOne;
+	}
+
+	public HashMap<String, String> getDateTimeOneNotSorted() {
+		return dateTimeOneNotSorted;
+	}
+
+	public Object[] getSorterKey() {
+		return sorterKey;
+	}
+
+	public Object[] getSorterValue() {
+		return sorterValue;
+	}
+
+	public ArrayList<LocalDateTime> getDateTimeAL() {
+		return dateTimeAL;
+	}
+
+	public LocalDateTime getASTval() {
+		return ASTval;
+	}
+
+	public LocalDateTime getZSTval() {
+		return ZSTval;
+	}
+
+	public LocalDateTime getGMTval() {
+		return GMTval;
+	}
+
+	public LocalDateTime getBSTval() {
+		return BSTval;
+	}
+
+	public LocalDateTime getCSTval() {
+		return CSTval;
+	}
+
+	public ZoneId getGMT() {
+		return GMT;
+	}
+
+	public ZoneId getBST() {
+		return BST;
+	}
+
+	public ZoneId getCST() {
+		return CST;
+	}
+	
+
 }
