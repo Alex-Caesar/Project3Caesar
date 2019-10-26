@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.HashMap;
 
 public class sandPR3 {
 
@@ -34,7 +35,15 @@ public class sandPR3 {
     System.out.println();
     dateTimeTwoTest.dateHashMapSorted();
     
-    
+    String stId = "OKCE";
+	MesoAsciiCal asciiAverage = new MesoAsciiCal(new MesoStation(stId));
+	int asciiAvg = asciiAverage.calAverage();		
+
+	HashMap<String, Integer> asciiVal = new HashMap<String, Integer>();
+	asciiVal.put(stId, asciiAvg);
+	System.out.print("ASCII average: ");
+	System.out.println(asciiAvg);
+	
 	}
 
 }
