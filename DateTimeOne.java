@@ -41,7 +41,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	public DateTimeOne() {
 		// initialized variables
-		DateTimeFormatter formatForHash = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM a");
+		DateTimeFormatter formatForHash = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:mm a");
 
 		this.dateNow = LocalDate.now();
 		this.timeNow = LocalTime.now();
@@ -98,7 +98,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	@Override
 	void dateTimeNow() {
-		DateTimeFormatter currentOut = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM a");
+		DateTimeFormatter currentOut = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:mm a");
 		String outNow = CSTval.format(currentOut);
 		System.out.println("Current Date/Time: " + outNow);
 	}
@@ -119,29 +119,29 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	@Override
 	void dateTimeOfOtherCity() {
 
-		String timeOnServer = CSTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String timeOnServer = CSTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		System.out.println("Time on Server: " + timeOnServer);
 
-		String gmtTime = GMTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String gmtTime = GMTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		System.out.println("GMT: " + gmtTime);
 
-		String bstTime = BSTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String bstTime = BSTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		System.out.println("BST (90E): " + bstTime);
 
-		String cstTime = BSTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String cstTime = BSTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		System.out.println("CST (90W): " + cstTime);
 	}
 
 	@Override
 	void dateTimeDifferentZone() {
 
-		String gmtTime = GMTval.format(DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM"));
+		String gmtTime = GMTval.format(DateTimeFormatter.ofPattern("MM/dd/yyyy kk:mm"));
 		System.out.println("GMT: " + gmtTime);
 
-		String bstTime = BSTval.format(DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM"));
+		String bstTime = BSTval.format(DateTimeFormatter.ofPattern("MM/dd/yyyy kk:mm"));
 		System.out.println("BST: " + bstTime);
 
-		String cstTime = CSTval.format(DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM"));
+		String cstTime = CSTval.format(DateTimeFormatter.ofPattern("MM/dd/yyyy kk:mm"));
 		System.out.println("CST: " + cstTime);
 
 	}
@@ -149,7 +149,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	@Override
 	void timeZoneHashMap() {
 		//TODO fix this
-		DateTimeFormatter formatForHash = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM a");
+		DateTimeFormatter formatForHash = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:mm a");
 		
 
 		String ASTtoHash = ASTval.format(formatForHash);
@@ -217,31 +217,31 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		String T = "T";
 
 		String astP5 = ASTval.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		String astP5Add = ASTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String astP5Add = ASTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		astP5 = astP5.concat(T);
 		astP5 = astP5.concat(astP5Add);
 		System.out.println(astP5);
 
 		String bstP5 = BSTval.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		String bstP5Add = BSTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String bstP5Add = BSTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		bstP5 = bstP5.concat(T);
 		bstP5 = bstP5.concat(bstP5Add);
 		System.out.println(bstP5);
 
 		String gmtP5 = GMTval.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		String gmtP5Add = GMTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String gmtP5Add = GMTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		gmtP5 = gmtP5.concat(T);
 		gmtP5 = gmtP5.concat(gmtP5Add);
 		System.out.println(gmtP5);
 
 		String cstP5 = CSTval.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		String cstP5Add = CSTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String cstP5Add = CSTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		cstP5 = cstP5.concat(T);
 		cstP5 = cstP5.concat(cstP5Add);
 		System.out.println(cstP5);
 
 		String zstP5 = ZSTval.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		String zstP5Add = ZSTval.format(DateTimeFormatter.ofPattern("kk:MM"));
+		String zstP5Add = ZSTval.format(DateTimeFormatter.ofPattern("kk:mm"));
 		zstP5 = zstP5.concat(T);
 		zstP5 = zstP5.concat(zstP5Add);
 		System.out.println(zstP5);

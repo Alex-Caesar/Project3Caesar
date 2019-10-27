@@ -86,7 +86,7 @@ public class MesoEquivalent {
 		}
 	}
 
-	public int getletterAvg(int[] asciiTempVals) {
+	public int getletterAvg(String LetterstID) {
 		int out=0;
 		int firstOut=0;
 		int secondOut=0;
@@ -197,8 +197,7 @@ public class MesoEquivalent {
 		for (int i = 0; i < size4loop; i++) {
 			
 			this.asciiAV = new int[length];
-			int[] tempIntArray=this.createArray((stationsAVG.get(i)).getStID());
-			Integer tempAsciiVal = this.getletterAvg(tempIntArray);
+			Integer tempAsciiVal = this.getletterAvg((stationsAVG.get(i)).getStID());
 			
 			Integer threshhold = asciiAverage;
 			
