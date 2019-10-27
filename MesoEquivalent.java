@@ -40,7 +40,7 @@ public class MesoEquivalent {
 		this.asciiAV = new int[length];
 		
 		this.createArray(LetterstID);
-		this.asciiAverage = this.getletterAvgstID(asciiVals);
+		this.asciiAverage = this.getletterAvgstID(LetterstID);
 		this.numberOfStationWithLetterAvg();
 	}
 
@@ -87,73 +87,105 @@ public class MesoEquivalent {
 	}
 
 	public int getletterAvg(int[] asciiTempVals) {
-		// vals to find
-		double charAverage = 0;
-		int asciiCeil = 0;
-		int asciiFloor = 0;
-		int asciiAvNum = 0;
-		// loop for adding ascii
-		for (int i = 0; i < length; i++) {
-			charAverage += asciiTempVals[i];
-		}
-		// average computation
-		charAverage /= 4;
-		// Math function for vals
-		asciiCeil = (int) Math.ceil(charAverage);
-		asciiFloor = (int) Math.floor(charAverage);
-		// determining average
-		if (charAverage % 100 >= 0.5) {
-			asciiAvNum = asciiCeil;
-		} else {
-			asciiAvNum = asciiFloor;
-		}
-		// finding average char
-		char lastChar = ((char) asciiAvNum);
-		// giving asciiAv data
-		asciiAV[0] = asciiCeil;
-		asciiAV[1] = asciiFloor;
-		asciiAV[2] = lastChar;
-
-		this.letterAvg = asciiAvNum;
-		this.asciiAvChar = lastChar;
+		int out=0;
+		int firstOut=0;
+		int secondOut=0;
+		double firstSecond=0;
 		
+		String NMRN="NMRN";
+		
+		double sumAscii = 0; 
+		 
+        for (int i = 0; i < NMRN.length(); i++) { 
+            sumAscii += (int)NMRN.charAt(i); 
+        } 
+        
+        sumAscii=sumAscii / NMRN.length();
+        
+       int asciiCeil = (int) Math.ceil(sumAscii);
+       int asciiFloor = (int) Math.floor(sumAscii);
+		// determining average
+		if (sumAscii % 100 >= 0.25) {
+			firstOut = asciiCeil;
+		} else {
+			firstOut = asciiFloor;
+		}
 
-		return letterAvg;
+        sumAscii = 0; 
+ 
+        for (int i = 0; i < LetterstID.length(); i++) { 
+            sumAscii += (int)LetterstID.charAt(i); 
+        } 
+        
+        sumAscii=sumAscii / LetterstID.length();
+        
+       asciiCeil = (int) Math.ceil(sumAscii);
+       asciiFloor = (int) Math.floor(sumAscii);
+		// determining average
+		if (sumAscii % 100 >= 0.25) {
+			secondOut = asciiCeil;
+		} else {
+			secondOut = asciiFloor;
+		}
+		
+		firstSecond=(firstOut+secondOut)/2;
+		 out=(int)Math.ceil(firstSecond);
+		
+        // return
+        return out; 
+
 	}
 	
-	public int getletterAvgstID(int[] asciiTempVals) {
-		// vals to find
-		double charAverage = 0;
-		int asciiCeil = 0;
-		int asciiFloor = 0;
-		int asciiAvNum = 0;
-		// loop for adding ascii
-		for (int i = 0; i < length; i++) {
-			charAverage += asciiTempVals[i];
-		}
-		// average computation
-		charAverage /= 4;
-		// Math function for vals
-		asciiCeil = (int) Math.ceil(charAverage);
-		asciiFloor = (int) Math.floor(charAverage);
+	public int getletterAvgstID(String LetterstID) {
+		int out=0;
+		int firstOut=0;
+		int secondOut=0;
+		double firstSecond=0;
+		
+		String NMRN="NMRN";
+		
+		double sumAscii = 0; 
+		 
+        for (int i = 0; i < NMRN.length(); i++) { 
+            sumAscii += (int)NMRN.charAt(i); 
+        } 
+        
+        sumAscii=sumAscii / NMRN.length();
+        
+       int asciiCeil = (int) Math.ceil(sumAscii);
+       int asciiFloor = (int) Math.floor(sumAscii);
 		// determining average
-		if (charAverage % 100 >= 0.5) {
-			asciiAvNum = asciiCeil;
+		if (sumAscii % 100 >= 0.25) {
+			firstOut = asciiCeil;
 		} else {
-			asciiAvNum = asciiFloor;
+			firstOut = asciiFloor;
 		}
-		// finding average char
-		char lastChar = ((char) asciiAvNum);
-		// giving asciiAv data
-		asciiAV[0] = asciiCeil;
-		asciiAV[1] = asciiFloor;
-		asciiAV[2] = lastChar;
 
-		this.letterAvg = asciiAvNum;
-		this.asciiAvChar = lastChar;
-		this.asciiAverage = (Integer) asciiAvNum;
+        sumAscii = 0; 
+ 
+        for (int i = 0; i < LetterstID.length(); i++) { 
+            sumAscii += (int)LetterstID.charAt(i); 
+        } 
+        
+        sumAscii=sumAscii / LetterstID.length();
+        
+       asciiCeil = (int) Math.ceil(sumAscii);
+       asciiFloor = (int) Math.floor(sumAscii);
+		// determining average
+		if (sumAscii % 100 >= 0.25) {
+			secondOut = asciiCeil;
+		} else {
+			secondOut = asciiFloor;
+		}
+		
+		firstSecond=(firstOut+secondOut)/2;
+		 out=(int)Math.ceil(firstSecond);
+		
+        // return
+        letterAvg=out;
+        
+        return out;
 
-		return letterAvg;
 	}
 
 	public void numberOfStationWithLetterAvg() throws IOException {

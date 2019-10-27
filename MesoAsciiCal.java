@@ -50,8 +50,30 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 	public int calAverage() {
 		
 			int out=0;
+			int firstOut=0;
+			int secondOut=0;
+			double firstSecond=0;
+			
+			String NMRN="NMRN";
+			
+			double sumAscii = 0; 
+			 
+	        for (int i = 0; i < NMRN.length(); i++) { 
+	            sumAscii += (int)NMRN.charAt(i); 
+	        } 
+	        
+	        sumAscii=sumAscii / NMRN.length();
+	        
+	       int asciiCeil = (int) Math.ceil(sumAscii);
+	       int asciiFloor = (int) Math.floor(sumAscii);
+			// determining average
+			if (sumAscii % 100 >= 0.25) {
+				firstOut = asciiCeil;
+			} else {
+				firstOut = asciiFloor;
+			}
 	
-	        double sumAscii = 0; 
+	        sumAscii = 0; 
 	 
 	        for (int i = 0; i < LetterstID.length(); i++) { 
 	            sumAscii += (int)LetterstID.charAt(i); 
@@ -59,15 +81,18 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 	        
 	        sumAscii=sumAscii / LetterstID.length();
 	        
-	       int asciiCeil = (int) Math.ceil(sumAscii);
-	       int asciiFloor = (int) Math.floor(sumAscii);
+	       asciiCeil = (int) Math.ceil(sumAscii);
+	       asciiFloor = (int) Math.floor(sumAscii);
 			// determining average
 			if (sumAscii % 100 >= 0.25) {
-				out = asciiCeil;
+				secondOut = asciiCeil;
 			} else {
-				out = asciiFloor;
+				secondOut = asciiFloor;
 			}
-	  
+			
+			firstSecond=(firstOut+secondOut)/2;
+			 out=(int)Math.ceil(firstSecond);
+			
 	        // return
 	        return out; 
 
