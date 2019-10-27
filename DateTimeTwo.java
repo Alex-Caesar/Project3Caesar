@@ -92,7 +92,7 @@ public class DateTimeTwo extends DateTimeOne {
 		for (Map.Entry<LocalDate, Integer> check : dateHashMap.entrySet()) {
 			// checking for leapYear
 			if (check.getKey().isLeapYear() == false) {
-				maybeNot = "not";
+				maybeNot = "not ";
 			}
 			// getting vals
 			years = check.getKey().getYear();
@@ -106,7 +106,7 @@ public class DateTimeTwo extends DateTimeOne {
 
 			Period p = Period.between(check.getKey(), super.getNow().toLocalDate());
 
-			String out = String.format("%d  is %s a leap year, and Difference: %d years, %d months, and %d days.",
+			String out = String.format("%d  is %sa leap year, and Difference: %d years, %d months, and %d days.",
 					years, maybeNot, p.getYears(), p.getMonths(), p.getDays());
 
 			System.out.println(out);

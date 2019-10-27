@@ -148,7 +148,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	@Override
 	void timeZoneHashMap() {
-		
+		//TODO fix this
 		DateTimeFormatter formatForHash = DateTimeFormatter.ofPattern("MM/dd/yyyy kk:MM a");
 		
 
