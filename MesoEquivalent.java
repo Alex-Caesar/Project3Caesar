@@ -70,7 +70,7 @@ public class MesoEquivalent {
 		tempRead = mesonetRead.readLine();
 
 		// while loop for reading in and making players
-		int i = 1;
+		int i = 0;
 		while (tempRead != null) {
 			/*
 			 * if(i>=stations.length) { stations=expandArray(stations); }

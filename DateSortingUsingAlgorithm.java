@@ -69,7 +69,7 @@ public class DateSortingUsingAlgorithm {
 		String tempRead = datesRead.readLine();
 
 		// while loop for reading in and making players
-		Integer i = 1;
+		Integer i = 0;
 		while (tempRead != null) {
 			
 			tempRead=tempRead.trim();
