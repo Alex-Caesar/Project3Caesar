@@ -10,15 +10,18 @@ import java.util.Map;
 
 public class DateSortingUsingAlgorithm {
 	
-	private HashMap<Integer,LocalDate> datesSorted;
-
+	private HashMap<Integer,LocalDate> dateHashMapSorted;
+	private HashMap<Integer,LocalDate> dateHashMapSortedDescending;
+	
 	public DateSortingUsingAlgorithm() throws IOException {
-		this.datesSorted=new HashMap<Integer, LocalDate>();
+		this.dateHashMapSorted=new HashMap<Integer, LocalDate>();
+		this.dateHashMapSortedDescending=new HashMap<Integer, LocalDate>();
 		this.readIn("SortingDates.txt");
-		this.sortHashMap(datesSorted);
-		this.dateHashMapSorted();
-		this.dateHashMapSortedDescending();
+		this.sortHashMap(dateHashMapSorted);
 		
+//		this.dateHashMapSorted();
+//		this.dateHashMapSortedDescending();
+
 		
 		
 	}
@@ -27,16 +30,21 @@ public class DateSortingUsingAlgorithm {
 		
 		ArrayList<LocalDate> sorter = new ArrayList<LocalDate>(datesSorted.values());	
 		Collections.sort(sorter);
-		Collections.reverse(sorter);
 		for (int i=0;i<sorter.size();i++) {
-			datesSorted.put(i,sorter.get(i));
+			this.dateHashMapSorted.put(i,sorter.get(i));
+		}
+		
+		Collections.reverse(sorter);
+		
+		for (int i=0;i<sorter.size();i++) {
+		this.dateHashMapSortedDescending.put(i,sorter.get(i));
 		}
 		
 		
 	}
 
 	public void dateHashMapSortedDescending() {
-		for (Map.Entry<Integer, LocalDate> printer : datesSorted.entrySet()) {
+		for (Map.Entry<Integer, LocalDate> printer : dateHashMapSortedDescending.entrySet()) {
 
 			System.out.println(printer.getValue().toString());
 
@@ -44,8 +52,11 @@ public class DateSortingUsingAlgorithm {
 	}
 
 	public void dateHashMapSorted() {
-		// TODO Auto-generated method stub
-		
+		for (Map.Entry<Integer, LocalDate> printer : dateHashMapSorted.entrySet()) {
+
+			System.out.println(printer.getValue().toString());
+
+		}
 	}
 	public void readIn(String filename) throws IOException {
 		// creating BufferReader
@@ -64,7 +75,7 @@ public class DateSortingUsingAlgorithm {
 			tempRead=tempRead.trim();
 			tempRead=tempRead.replace(" ", "");
 			LocalDate tempLD = LocalDate.parse(tempRead, readInFormat);
-			datesSorted.put(i,tempLD);
+			dateHashMapSorted.put(i,tempLD);
 
 			i++;
 			tempRead = datesRead.readLine();

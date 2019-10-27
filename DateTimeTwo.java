@@ -46,14 +46,14 @@ public class DateTimeTwo extends DateTimeOne {
 
 		int month = monthNum;
 		int year = yearNum;
-		LocalDate temp = LocalDate.of(year, month, 10);
-		String tenthDay = temp.getDayOfWeek().toString();
-
-		temp = LocalDate.of(year, month, 18);
-		String eighteenthtDay = temp.getDayOfWeek().toString();
-
-		System.out.println("The tenth day of this month is " + tenthDay + " and eighteenth is " + eighteenthtDay);
-
+		LocalDate temp15 = LocalDate.of(year, month, 15);
+		String fifteenthDay = temp15.getDayOfWeek().toString();
+		
+		int days=temp15.lengthOfMonth();
+		LocalDate tempLast = LocalDate.of(year, month, days);
+		String lastDay = tempLast.getDayOfWeek().toString();
+		
+		System.out.println("For the year ("+year+") and month ("+month+"), the fifteenth day is "+fifteenthDay+" and the last day is "+lastDay);
 	}
 
 	public void readIn(String filename) throws IOException {
