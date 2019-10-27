@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -19,8 +20,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 
 	private SimpleDateFormat dateFormat;
 
-	private HashMap<String, String> dateTimeOne;
-	private final HashMap<String, String> dateTimeOneNotSorted;
+	private HashMap<String, String> timeZoneHashMap;
+	private final HashMap<String, String> timeZoneHashMap2;
 
 	Object[] sorterKey;
 	Object[] sorterValue;
@@ -37,6 +38,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	private final ZoneId GMT;
 	private final ZoneId BST;
 	private final ZoneId CST;
+	
 
 	public DateTimeOne() {
 		// initialized variables
@@ -50,8 +52,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		this.sorterValue = new String[5];
 
 		// intialize hashMap
-		this.dateTimeOneNotSorted = new HashMap<String, String>();
-		this.dateTimeOne = new HashMap<String, String>();
+		this.timeZoneHashMap = new HashMap<String, String>();
+		this.timeZoneHashMap2 = new HashMap<String, String>();
 
 		// get hashmap values
 		this.ASTval = LocalDateTime.of(2019, 4, 3, 5, 23, 55);
@@ -86,11 +88,14 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		dateTimeAL.add(ZSTval);
 
 		// put into hashMap
-		dateTimeOneNotSorted.put("AST", ASTtoHash);
-		dateTimeOneNotSorted.put("ZST", ZSTtoHash);
-		dateTimeOneNotSorted.put("GMT", GMTtoHash);
-		dateTimeOneNotSorted.put("BST", BSTtoHash);
-		dateTimeOneNotSorted.put("CST", CSTtoHash);
+		timeZoneHashMap.put("AST", ASTtoHash);
+		timeZoneHashMap.put("ZST", ZSTtoHash);
+		timeZoneHashMap.put("GMT", GMTtoHash);
+		timeZoneHashMap.put("BST", BSTtoHash);
+		timeZoneHashMap.put("CST", CSTtoHash);
+		
+		ArrayList<String> sorter = new ArrayList<String>(timeZoneHashMap.keySet());	
+		Collections.sort(sorter);
 
 	}
 
@@ -158,27 +163,27 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		/*I guess sort and work on hashmaps??*/
 		
 		// putting into arrays
-		sorterKey = dateTimeOneNotSorted.keySet().toArray();
-		sorterValue = dateTimeOneNotSorted.values().toArray();
+		sorterKey = timeZoneHashMap.keySet().toArray();
+		sorterValue = timeZoneHashMap.values().toArray();
 
 		System.out.println("Print Style 1:");
-		String cutAST = dateTimeOneNotSorted.get("AST");
+		String cutAST = timeZoneHashMap.get("AST");
 		cutAST = cutAST.substring(0, 16);
 		System.out.println("AST " + cutAST);
 
-		String cutBST = dateTimeOneNotSorted.get("BST");
+		String cutBST = timeZoneHashMap.get("BST");
 		cutBST = cutBST.substring(0, 16);
 		System.out.println("BST " + cutBST);
 
-		String cutCST = dateTimeOneNotSorted.get("CST");
+		String cutCST = timeZoneHashMap.get("CST");
 		cutCST = cutCST.substring(0, 16);
 		System.out.println("CST " + cutCST);
 
-		String cutGMT = dateTimeOneNotSorted.get("GMT");
+		String cutGMT = timeZoneHashMap.get("GMT");
 		cutGMT = cutGMT.substring(0, 16);
 		System.out.println("GMT " + cutGMT);
 
-		String cutZST = dateTimeOneNotSorted.get("ZST");
+		String cutZST = timeZoneHashMap.get("ZST");
 		cutZST = cutZST.substring(0, 16);
 		System.out.println("ZST " + cutZST);
 
@@ -242,11 +247,11 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 	}
 
 	public HashMap<String, String> getDateTimeOne() {
-		return dateTimeOne;
+		return timeZoneHashMap;
 	}
 
 	public HashMap<String, String> getDateTimeOneNotSorted() {
-		return dateTimeOneNotSorted;
+		return timeZoneHashMap;
 	}
 
 	public Object[] getSorterKey() {
