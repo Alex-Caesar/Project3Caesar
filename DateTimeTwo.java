@@ -66,7 +66,7 @@ public class DateTimeTwo extends DateTimeOne {
 		String tempRead = datesRead.readLine();
 
 		// while loop for reading in and making players
-		Integer i = 0;
+		Integer i = 1;
 		while (tempRead != null) {
 			LocalDate tempLD = LocalDate.parse(tempRead, readInFormat);
 			dateHashMap.put(tempLD, i);
