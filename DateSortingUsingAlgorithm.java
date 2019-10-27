@@ -13,7 +13,7 @@ public class DateSortingUsingAlgorithm {
 	private HashMap<Integer,LocalDate> datesSorted;
 
 	public DateSortingUsingAlgorithm() throws IOException {
-		
+		this.datesSorted=new HashMap<Integer, LocalDate>();
 		this.readIn("SortingDates.txt");
 		this.sortHashMap(datesSorted);
 		this.dateHashMapSorted();
@@ -36,9 +36,9 @@ public class DateSortingUsingAlgorithm {
 	}
 
 	public void dateHashMapSortedDescending() {
-		for (Map.Entry<LocalDate, Integer> printer : datesSorted.entrySet()) {
+		for (Map.Entry<Integer, LocalDate> printer : datesSorted.entrySet()) {
 
-			System.out.println(printer.getKey().toString() + ":" + printer.getValue());
+			System.out.println(printer.getValue().toString());
 
 		}
 	}
