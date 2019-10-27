@@ -3,28 +3,44 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DateSortingUsingAlgorithm {
 	
 	private HashMap<Integer,LocalDate> datesSorted;
 
 	public DateSortingUsingAlgorithm() throws IOException {
-		this.readIn("SortingDates.txt");
 		
+		this.readIn("SortingDates.txt");
+		this.sortHashMap(datesSorted);
+		this.dateHashMapSorted();
+		this.dateHashMapSortedDescending();
 		
 		
 		
 	}
 	
-	public void quickSort(HashMap<Integer,LocalDate> datesSorted) {
+	public void sortHashMap(HashMap<Integer,LocalDate> datesSorted) {
+		
+		ArrayList<LocalDate> sorter = new ArrayList<LocalDate>(datesSorted.values());	
+		Collections.sort(sorter);
+		Collections.reverse(sorter);
+		for (int i=0;i<sorter.size();i++) {
+			datesSorted.put(i,sorter.get(i));
+		}
 		
 		
 	}
 
 	public void dateHashMapSortedDescending() {
-		// TODO Auto-generated method stub
-		
+		for (Map.Entry<LocalDate, Integer> printer : datesSorted.entrySet()) {
+
+			System.out.println(printer.getKey().toString() + ":" + printer.getValue());
+
+		}
 	}
 
 	public void dateHashMapSorted() {
