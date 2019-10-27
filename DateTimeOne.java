@@ -96,6 +96,11 @@ public class DateTimeOne extends MesoDateTimeOneAbstract {
 		
 		ArrayList<String> sorter = new ArrayList<String>(timeZoneHashMap.keySet());	
 		Collections.sort(sorter);
+		
+		for (int i=0;i<sorter.size();i++) {
+			timeZoneHashMap2.put(sorter.get(i).toString(),timeZoneHashMap.get(sorter.get(i)));
+		}
+		
 
 	}
 

@@ -17,11 +17,13 @@ import java.time.format.DateTimeFormatter;
 
 public class DateTimeTwo extends DateTimeOne {
 
-	private HashMap<LocalDate, Integer> dates;
-
+	private HashMap<LocalDate, Integer> dateHashMap;
+	private HashMap<LocalDate, Integer> dateHashMapSorted;
+	
 	public DateTimeTwo() throws IOException {
 		super();
-		this.dates = new HashMap<LocalDate, Integer>();
+		this.dateHashMap = new HashMap<LocalDate, Integer>();
+		this.dateHashMapSorted = new HashMap<LocalDate, Integer>();
 		this.readIn("Dates.txt");
 	}
 
@@ -67,7 +69,7 @@ public class DateTimeTwo extends DateTimeOne {
 		Integer i = 0;
 		while (tempRead != null) {
 			LocalDate tempLD = LocalDate.parse(tempRead, readInFormat);
-			dates.put(tempLD, i);
+			dateHashMap.put(tempLD, i);
 
 			i++;
 			tempRead = datesRead.readLine();
@@ -87,7 +89,7 @@ public class DateTimeTwo extends DateTimeOne {
 
 		String maybeNot = "";
 
-		for (Map.Entry<LocalDate, Integer> check : dates.entrySet()) {
+		for (Map.Entry<LocalDate, Integer> check : dateHashMap.entrySet()) {
 			// checking for leapYear
 			if (check.getKey().isLeapYear() == false) {
 				maybeNot = "not";
@@ -117,7 +119,7 @@ public class DateTimeTwo extends DateTimeOne {
 	public void dateHashMap() {
 
 		// printing loop
-		for (Map.Entry<LocalDate, Integer> printer : dates.entrySet()) {
+		for (Map.Entry<LocalDate, Integer> printer : dateHashMap.entrySet()) {
 
 			System.out.println(printer.getKey().toString() + ":" + printer.getValue());
 
@@ -127,15 +129,18 @@ public class DateTimeTwo extends DateTimeOne {
 
 	public void dateHashMapSorted() {
 
-		ArrayList<LocalDate> sorter = new ArrayList<LocalDate>(dates.keySet());
+		ArrayList<LocalDate> sorter = new ArrayList<LocalDate>(dateHashMap.keySet());
 		
 		Collections.sort(sorter);
 		
 		//Collections.reverse(sorter);
+		for (int i=0;i<sorter.size();i++) {
+			dateHashMapSorted.put(sorter.get(i),dateHashMap.get(sorter.get(i)));
+		}
 		
 		for (int i=0;i<sorter.size();i++) {
 
-			System.out.println(sorter.get(i).toString() + ":" + dates.get(sorter.get(i)));
+			System.out.println(sorter.get(i).toString() + ":" + dateHashMap.get(sorter.get(i)));
 
 		}
 
