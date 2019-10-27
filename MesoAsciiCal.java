@@ -49,37 +49,28 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 	
 	public int calAverage() {
 		
-		// vals to find
-		double charAverage = 0;
-		int asciiCeil = 0;
-		int asciiFloor = 0;
-		int asciiAvNum = 0;
-		// loop for adding ascii
-		for (int i = 0; i < length; i++) {
-			charAverage += asciiVals[i];
-		}
-		// average computation
-		charAverage /= 4;
-		// Math function for vals
-		asciiCeil = (int) Math.ceil(charAverage);
-		asciiFloor = (int) Math.floor(charAverage);
-		// determining average
-		if (charAverage % 100 >= 0.5) {
-			asciiAvNum = asciiCeil;
-		} else {
-			asciiAvNum = asciiFloor;
-		}
-		// finding average char
-		char lastChar = ((char) asciiAvNum);
-		// giving asciiAv data
-		asciiAV[0] = asciiCeil;
-		asciiAV[1] = asciiFloor;
-		asciiAV[2] = lastChar;
+			int out=0;
+	
+	        double sumAscii = 0; 
+	 
+	        for (int i = 0; i < LetterstID.length(); i++) { 
+	            sumAscii += (int)LetterstID.charAt(i); 
+	        } 
+	        
+	        sumAscii=sumAscii / LetterstID.length();
+	        
+	       int asciiCeil = (int) Math.ceil(sumAscii);
+	       int asciiFloor = (int) Math.floor(sumAscii);
+			// determining average
+			if (sumAscii % 100 >= 0.25) {
+				out = asciiCeil;
+			} else {
+				out = asciiFloor;
+			}
+	  
+	        // return
+	        return out; 
 
-		this.letterAvg = asciiAvNum;
-		this.asciiAvChar = lastChar;
-		
-		return letterAvg;
 	}
    
 }
